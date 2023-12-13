@@ -2,22 +2,23 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Creative Resume</title>
+    <title>Resume</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body class="body">
-<div class="resume">
+<div class="resume animation-text">
     <header class="header">
         <h1 class="name">Ann Makiichuk</h1>
         <p class="header__description">Student CHDTU | A beginner in programming</p>
     </header>
+    <div class="star">★</div>
+    <div class="particles-container"></div>
 
     <section class="photo">
         <div class="image-container">
             <img class="image" src="photo.jpg" alt="My photo">
         </div>
     </section>
-
     <section class="about">
         <h2 class="label">About Me</h2>
         <p class="description">Hi, I'm Anna. I completed my second year at
@@ -32,7 +33,7 @@
 
     <section class="experience">
         <h2 class="label">Experience</h2>
-        <div class="experience-item">
+        <div class="experience-item show-section">
             <h3 class="experience-item__label">Academic subjects at the university</h3>
             <ul class="list">
                 <li>Programming in JavaScript</li>
@@ -85,5 +86,45 @@
         </div>
     </section>
 </div>
+
+
+
+<script>
+    const particlesContainer = document.querySelector(".particles-container");
+
+    function createParticle() {
+        const particle = document.createElement("div");
+        particle.classList.add("particles");
+        particle.style.left = `${Math.random() * 100}vw`;
+        particlesContainer.appendChild(particle);
+
+        setTimeout(() => {
+            particle.remove();
+        }, 2000);
+    }
+
+    setInterval(createParticle, 100);
+
+    const star = document.querySelector(".star");
+
+    document.addEventListener("mousemove", (event) => {
+        const mouseX = event.clientX;
+        const mouseY = event.clientY;
+
+        star.style.left = mouseX + "px";
+        star.style.top = mouseY + "px";
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+        const animatedContainer = document.querySelector(".animation-text");
+
+        function showText() {
+            animatedContainer.style.opacity = 1;
+            animatedContainer.style.transform = "translateY(0)";
+        }
+        showText();
+    });
+
+</script>
 </body>
 </html>
